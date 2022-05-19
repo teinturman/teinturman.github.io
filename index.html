@@ -1,4 +1,131 @@
 <html>  
+  <div width=721>
   <img src=said_presentation.jpg>
+
+  <h1>
+      Programming and Racing Autonomous Vehicles for fun!
+  </h1>
+
+  If you are looking for a great project to learn python programming, Deep learning and some raspberry pi technologies, then this site is for you .
   
+  <br>
+  You will learn how to build an an autonomous  car (1/12 scale), how to connect a raspbeery pi to the car  and to install necessary software to have the car drive autonomously on a circuit. 
+  <br>
+  With such car, it is even possible to participate in some very fun race events where multiple autonomous cars race against each others..
+
+  <br>
+
+  <h1>
+      Let's build a smart car
+  </h1>
+  First step is really to choose a RC car from the numbers of available brands and models :   <br>
+  The below information may help you find your own ideal RC Car for your autonomous project : 
+
+  <h2> How to Find a good rc car </h2>
+    <h3> Choose a scale : 1/14 , 1/12 or 1/10 : </h3>
+         1/14 : will be the smallest, and it is possible , but tricky to stick the required electronic into a 1/14 car.  <br>
+         1/12 : probably the perfect compromise between size of the car and available space on the car to integrate the required electronics. But there are not so many of these cars, as the most used scale is 1/10  <br>
+         1/10 : Most common scale, with a lot of space to have a tidy electronic set up , and a lot of power to race .  <br>
+
+    <h3> Select a transmission : </h3>
+         4WD will help to stick to the road, where as 2WD might be faster ...  <br>
+    <h3> Servo and ESC: </h3>
+
+          We use a PCA9685 pwm provider board to send PWM signals to the ESC and to the Servos, and this component is only compatible with servos and esc devices having 3 wires only : Ground/VCC/Signal. Any servo that has more than 3 wires will not be compatible and will have to be replaced.   <br><br>
+<br>
+          The servo and ESC that is provided as part of the RC car will probably have to be thrown away, and replaced by a new servo and new ESC device<br>
+           ==> you will need to buy a compatible steering servo and a compatible ESC for the car.  <br>
+<br>
+          Any standard RC ESC will be ok to replace the one provided with the car
+<br>
+         for the servo, it is another story : 
+            first, you want to find a 3 wires servo that has exactly the same dimensions as the servo that is provided with the car. 
+            you need to ensure that the force of the Servo is enough and that the number of teeth matches the original servo. 
+              the number of teeth is noted as "25T" in the description.
+<br>
+    <h3> battery power </h3>
+         RC Cars are sold with a battery : and the ESC that you will have purchased may not have the same connector as your stock battery : you will therefore need to purchase a battery adapater as well , to allow you to connect the battery to the new ESC.
+
+    <h3> well known rc car brands </h3>
+         these are some RC Car Brands : 
+          WLToys<br>
+          Tamya<br>
+          Traxxas <br>
+
+  <h2>Recommended car : Wltoys 12428b</h3>
+    I have selected the Wltoys 12428b , as it has a nice look, has a lot of space within the cokpit, has a high speed, but still is 4WD. Also, all the car is maintained with a number of small screws which are very convenient to fix the additional parts that are needed for an autonomous car. 
+    
+    If you want to ensure that you will have no surprises, and you want to quickly start the race, i would recommend that you go with that RC car. 
+
+    <img src=said_rc_car_12428b.png><br>
+
+    In order to convert the car into an autonomous driving car , you will need the below : <br>
+    <br> <br>
+    <img src=said_rc_car_bom.png>
+    <br> <br>
+    <b>The Car </b> : carefully select the RC car you want, and in doubt, follow my recommandation.
+    <br> <br>
+    <b>The Board </b> :  Raspberry Pi is a good choice : autonomous car requires high CPU, and even if a Raspberry 3B+ would work, a raspberry pi 4 with 4GB is highly recommended.
+    <br> <br>
+    <b>The Remote Controller </b> :  Multiple Remote controllers are compatible, PS3, Wiiu Pro Controller, these old controllers have the advantage of being very easy to setup, whereas recent controllers will require to install more components on the raspberry pi ( i.e. pygame) i love the Wiiu Pro Controller, some geek shops can have some if yuou ask the vendor...
+    <br>    <br>
+    <b>The PWM generator </b> :  The steering and the throttle of the car will have to be controlled via a PWM signal.  Raspberry pi devices are great devices, but when it is about real time and pwm signal generation they are not good enough. This is why it is needed to have a dedicated PWM generator the best choice is to use the very cheap PCA9685 board, which is able to generate accurate and stable pwm signals and can communicate easily with the Raspberry pi via i2c communidcation. Some other hobbyist prefers to use arduino and to code themselves the PWM generator code : it is an option, but this will require much more time and money than the PCA9685 !
+    <br> <br>
+    <b>The Steering Servo </b> :this is the hard part to purchase : it has to fit the car easily, and have the same characteristics as the original one. First of all , the servo will need to have only 3 wires : black, Red and orange or yellow. Any Servo with more than 3 wires will not Work . 
+
+    You sshould check the web sites where you would purchase replacement parts for your car, they may give some information on the size,  the number of teeth ( i.e. 25T ) , the speed and the force of the original Servo. Then you will have to search on internet for a compatible Servo . If you selected the Wltoys 12428 car, then it is easy, the servo you need it the "JX PDI 2506 MG" it will fit exactly in the car, and replace the original one gracefully.
+    <br> <br>
+    <b> 5V Powerbank </b> the Powerbank will be used to power the Raspberry and the Pwm generator, independantly of the main electric circuit , to prevent any electric disturbance on the cpu, while racing.
+    be sure to select a Powerbank that has at least 2.1 A output. Most powerbanks havinf 2.1 A that i tried worked perfectly.
+
+    <br> <br>
+    <b> Long camera  cable </b> Once you will want to fix the board and camera to the car ,  you may discover that the ruban cable between the 2 is not long enough ...  such cable is not that expensive, and i believe is finally needed.
+
+    <br> <br>
+    <b> Camera </b> Camera for Raspberry pi must be compatible with Raspberry Pi 2 camera and raspicam api. Fisheye camera is usually used for cars, as it allows to have a large fireld of view. Also, there are Infrared cameras that are designed to run in the dark, and standard cameras. I/R cameras do not have a IR filter, which makes the image pinky... Some cameras have an additional channel that allows to physically apply the ir filter or remove it depending on the requirement. For standard usage, the best would be to avoid I/R cameras.
+
+    <br> <br>
+    <b> Oled Display </b> It is possible to add an Oled Display to display information at runtime ( Ip address of the robot, and some other values) . this is an optional component...
+
+    <br> <br>
+    <b> Speed Sensors </b>  Speed Sensors are required if you plan to allow the car to brake before curves. That is a critical advantage, when racing...
+    The principle of Speed Sensors is to provide speed and direction. The speed sensor i use is an Incremental encoders with main optical sensor on each wheek that will provide the speed and a phased optical sensor that will provide the direction of the car. the optical sensor has only 4 steps per rev, to minimize the overhead of cpu while the car is at high speed. 3 optical sensors are needed to be able to have speed on each wheel and direction. 
+
+    <br> <br>
+    <b> ESC Device </b> it will probably not be possible to reuse the Motor controller that is provided by default in the RC car, this is why it is necessary to purchase an standard RC CAR ESC device that can manage the speed of the motor, using a pwm signal ( that will be generated by the pwm generator).
+
+    <br> <br>
+    <b> Battery Connector </b> the battery that comes with the car may not have the same connector as the replacement ESC, this is why we need to purchase a cable to be able to connect the battery to the ESC easily.
+
+
+
+
+
+
+
+
+
+    <img src=said_rc_wiring.png>
+<br>
+    All the necessary 3D printed parts that are needed to convert the car into an autonomous car are available  <a href= https://www.thingiverse.com/thing:4199207> here  </a>:<br>
+<br><br>
+
+    <img src=said_rc_stl_camera.png><br>
+    <img src=said_rc_stl_cockpit.png><br>
+    <img src=said_rc_stl_speed_sensor.png><br>
+    <img src=said_rc_stl_roof.png><br>
+
+
+
+  <h1>
+      Now, put some software on top of it 
+  </h1>
+
+  <h1>
+      And train the brain ... 
+  </h1>
+
+
+  </div>
+
 </html>

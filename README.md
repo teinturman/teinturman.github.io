@@ -1,3 +1,2 @@
-# IRoadTripper
-Build an autonomous car and participate to fun Race events ! 
-
+# teinturman.github.io
+Smart Artificial Intelligence Driver (SAID)
